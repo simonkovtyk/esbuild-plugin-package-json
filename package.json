@@ -1,0 +1,51 @@
+{
+	"name": "esbuild-plugin-package-json",
+	"description": "Prepares the package.json by removing all unnecessary fields and copying it to the out folder of esbuild, so the built package can be published directly.",
+	"keywords": [
+		"frontend",
+		"backend",
+		"packages",
+		"esbuild",
+		"build",
+		"esbuild plugin",
+		"esbuild tool",
+		"build plugin",
+		"build tool",
+		"package.json"
+	],
+	"license": "MIT",
+	"version": "1.0.0",
+	"bugs": "https://github.com/simonkovtyk/esbuild-plugin-package-json/issues",
+	"homepage": "https://github.com/simonkovtyk/esbuild-plugin-package-json",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/simonkovtyk/esbuild-plugin-package-json.git"
+	},
+	"exports": {
+		".": {
+			"default": "./public-api.ts",
+			"types": "./public-api.d.ts"
+		}
+	},
+	"author": {
+		"name": "Simon Kovtyk",
+		"url": "https://github.com/simonkovtyk",
+		"email": "privat@kovtyk.com"
+	},
+	"maintainers": [
+		{
+			"name": "Simon Kovtyk",
+			"url": "https://github.com/simonkovtyk",
+			"email": "privat@kovtyk.com"
+		}
+	],
+	"dependencies": {
+		"@npmcli/package-json": "^5.2.0",
+		"esbuild": ">=0.20.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.5.4",
+		"@types/npmcli__package-json": "^4.0.4",
+		"@types/node": "^22.5.4"
+	}
+}
