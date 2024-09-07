@@ -25,7 +25,7 @@ jobs:
 
       - name: Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd dist
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
