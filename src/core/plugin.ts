@@ -51,3 +51,7 @@ const packageJsonPlugin = (options: Options): Plugin => ({
 		}
 	}
 })
+
+export {
+	packageJsonPlugin
+}
