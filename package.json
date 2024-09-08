@@ -25,7 +25,7 @@
 		"package config plugin"
 	],
 	"license": "MIT",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"bugs": "https://github.com/simonkovtyk/esbuild-plugin-package-json/issues",
 	"homepage": "https://github.com/simonkovtyk/esbuild-plugin-package-json",
 	"repository": {

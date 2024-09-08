@@ -1,12 +1,12 @@
 import { Plugin, PluginBuild } from "esbuild";
 import fs from "node:fs";
-import { shouldRemoveFields } from "../constants/fields.constant";
-import { PACKAGE_JSON_FILENAME } from "../constants/file.constant";
-import { resolveOutDir } from "../helpers/out.helper";
-import { HandlerOptions, Lifecycle, Options } from "../types/options.type";
+import { shouldRemoveFields } from "./constants/fields.constant";
+import { PACKAGE_JSON_FILENAME } from "./constants/file.constant";
+import { resolveOutDir } from "./helpers/out.helper";
+import { Lifecycle, Options, ResolvePathOptions } from "./types/options.type";
 import PackageJson from "@npmcli/package-json";
 
-const handler = (options: HandlerOptions) => {
+const handler = (options: ResolvePathOptions) => {
 	return async () => {
 		const packageJson = await PackageJson.load(options.pathToPackageJson ?? process.cwd());
 
@@ -36,7 +36,17 @@ const packageJsonPlugin = (options: Options): Plugin => ({
 	setup: (build: PluginBuild) => {
 		const lifecycle: Lifecycle = options.lifecycle ?? "onEnd";
 
-		const handlerRef = handler(options);
+		const resolvePathOptions: ResolvePathOptions = {
+			outBase: build.initialOptions.outbase,
+			outDir: build.initialOptions.outdir,
+			outFile: build.initialOptions.outfile,
+			overrideOutBase: options.overrideOutBase,
+			overrideOutDir: options.overrideOutDir,
+			overrideOutFile: options.overrideOutFile,
+			pathToPackageJson: options.pathToPackageJson
+		}
+
+		const handlerRef = handler(resolvePathOptions);
 
 		switch (lifecycle) {
 			case "onStart":

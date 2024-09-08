@@ -1,2 +1,2 @@
 export * from "./core/plugin";
-export * from "./types/options.type";
+export * from "./core/types/options.type";
