@@ -1,28 +1,24 @@
 type Lifecycle = "onStart" | "onEnd" | "onDispose";
 
-type PathOverwrites = {
+type PathOverrides = {
 	overrideOutBase?: string | undefined,
 	overrideOutDir?: string | undefined,
-	overrideOutFile?: string | undefined
+	overrideOutFile?: string | undefined,
+	pathToPackageJson?: string | undefined
 }
 
 type Options = {
 	lifecycle?: Lifecycle | undefined
-} & PathOverwrites
-
-type HandlerOptions = {
-	pathToPackageJson?: string | undefined
-											} & PathOverwrites
+} & PathOverrides
 
 type ResolvePathOptions = {
+	outBase?: string | undefined,
 	outDir?: string | undefined,
-	outFile?: string | undefined,
-	outBase?: string | undefined
-} & PathOverwrites
+	outFile?: string | undefined
+} & PathOverrides;
 
 export type {
 	ResolvePathOptions,
 	Lifecycle,
-	Options,
-	HandlerOptions
+	Options
 }
