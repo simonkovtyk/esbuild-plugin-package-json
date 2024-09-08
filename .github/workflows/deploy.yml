@@ -21,13 +21,19 @@ jobs:
         run: tsc
 
       - name: Assets
-        run: cp package.json dist/package.json
+        run: |
+          cp package.json dist/package.json
+          cp README.md dist/README.md
+
+      - name: Config
+        run: |
+          cd dist
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
 
       - name: Publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd dist
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
           pnpm publish --access public --no-git-checks
