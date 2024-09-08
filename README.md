@@ -1,20 +1,31 @@
 # esbuild plugin for package.json
 
-Prepares the package.json by removing all unnecessary fields and copying it to the out folder of esbuild, so the built package can be published directly.
+![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json) ![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
+
+Prepares the package.json by removing all unnecessary fields and copying it to the out-folder of esbuild, so the built package can be published directly.
 
 * Supports newest esbuild version
 * Uses NPM's package.json discovery
-* Uses esbuild config to determine the outg folder
-* Type-declarations (d.ts) included
+* Uses esbuild config to determine the out folder
+* Type declarations (d.ts) included
+
+## Unnecessary fields
+
+While a package should be published, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
+
+Following fields are removed:
+- devDependencies
+- scripts
 
 ## How It Works
 
 1. Parses the package.json from the project root.
 2. Deletes all unnecessary fields.
 3. Determines the out-folder by using the existing esbuild configuration.
+4. Writes the new package.json to this dir.
 
-This plugin prefers an ``outdir`` over an ``outfile``, but if only a ``outfile`` is provided, the plugin will choose the directory of the ``outfile`` as output directory for the package.json instead.\
-The ``outbase`` is used as an prefix for the ``outdir`` or ``outfile`` and it can be leaved as empty, if it is not needed.
+This plugin prefers an ``outdir`` over an ``outfile``, but if only an ``outfile`` is provided, the plugin will choose the directory of the ``outfile`` as output directory for the package.json instead.\
+The ``outbase`` is used as a prefix for the ``outdir`` or ``outfile`` and it can be left as empty, if it is not needed.
 
 ## Options
 
@@ -40,9 +51,9 @@ Sometimes it can be helpful to overwrite the output directory.
 ````typescript
 packageJsonPlugin(
   [...]
-  overwriteOutBase?: string | undefined,
-  overwriteOutDir?: string | undefined,
-  overwriteOutFile?: string | undefined
+  overrideOutBase?: string | undefined,
+  overrideOutDir?: string | undefined,
+  overrideOutFile?: string | undefined
 );
 ````
 
@@ -67,7 +78,7 @@ packageJsonPlugin(
 
 ### Installation
 
-The plugin can be installed by any package manger.
+The plugin can be installed by any package manager.
 
 <details><summary><b>Show instructions</b></summary>
 
@@ -110,7 +121,7 @@ The MIT License (MIT) - Please have a look at the LICENSE file for more details.
 Feel free to contribute to this project.\
 You can fork this project and create a new pull request for contributing.
 
-[Get to the respository at GitHub.](https://github.com/simonkovtyk/esbuild-plugin-package-json)
+[Get to the repository at GitHub.](https://github.com/simonkovtyk/esbuild-plugin-package-json)
 
 <hr>
 

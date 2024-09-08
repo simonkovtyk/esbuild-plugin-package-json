@@ -1,9 +1,9 @@
 type Lifecycle = "onStart" | "onEnd" | "onDispose";
 
 type PathOverwrites = {
-	overwriteOutBase?: string | undefined,
-	overwriteOutDir?: string | undefined,
-	overwriteOutFile?: string | undefined
+	overrideOutBase?: string | undefined,
+	overrideOutDir?: string | undefined,
+	overrideOutFile?: string | undefined
 }
 
 type Options = {
