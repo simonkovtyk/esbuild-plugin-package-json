@@ -36,14 +36,17 @@ const packageJsonPlugin = (options: Options): Plugin => ({
 	setup: (build: PluginBuild) => {
 		const lifecycle: Lifecycle = options.lifecycle ?? "onEnd";
 
-		const resolvePath: ResolvePathOptions = {
+		const resolvePathOptions: ResolvePathOptions = {
 			outBase: build.initialOptions.outbase,
 			outDir: build.initialOptions.outdir,
 			outFile: build.initialOptions.outfile,
-			...options
+			overrideOutBase: options.overrideOutBase,
+			overrideOutDir: options.overrideOutDir,
+			overrideOutFile: options.overrideOutFile,
+			pathToPackageJson: options.pathToPackageJson
 		}
 
-		const handlerRef = handler(resolvePath);
+		const handlerRef = handler(resolvePathOptions);
 
 		switch (lifecycle) {
 			case "onStart":
