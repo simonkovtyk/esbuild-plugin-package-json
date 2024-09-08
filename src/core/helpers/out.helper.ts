@@ -21,7 +21,7 @@ const resolveOutDir = (options: ResolvePathOptions): string => {
 	if (explicitOutFile !== undefined) {
 		const dirOfOutFile = path.parse(explicitOutFile).dir;
 
-		return path.join(explicitOutFile, dirOfOutFile);
+		return path.join(outBase, dirOfOutFile);
 	}
 
 	return path.join(outBase, "dist")
