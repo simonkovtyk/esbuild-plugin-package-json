@@ -13,7 +13,7 @@ Prepares the package.json by removing all unnecessary fields and copying it to t
 
 While a package should be published, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
 
-Following fields are removed:
+Following fields will be removed:
 - devDependencies
 - scripts
 
