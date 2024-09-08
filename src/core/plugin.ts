@@ -18,6 +18,8 @@ const handler = (options: ResolvePathOptions) => {
 
 		const resolvedOutDir = resolveOutDir(options);
 
+		console.log(resolvedOutDir);
+
 		if (!fs.existsSync(resolvedOutDir)) {
 			fs.mkdirSync(resolvedOutDir, { recursive: true });
 		}
@@ -34,16 +36,16 @@ const handler = (options: ResolvePathOptions) => {
 const packageJsonPlugin = (options: Options): Plugin => ({
 	name: "esbuild-plugin-package-json",
 	setup: (build: PluginBuild) => {
-		const lifecycle: Lifecycle = options.lifecycle ?? "onEnd";
+		const lifecycle: Lifecycle = options?.lifecycle ?? "onEnd";
 
 		const resolvePathOptions: ResolvePathOptions = {
 			outBase: build.initialOptions.outbase,
 			outDir: build.initialOptions.outdir,
 			outFile: build.initialOptions.outfile,
-			overrideOutBase: options.overrideOutBase,
-			overrideOutDir: options.overrideOutDir,
-			overrideOutFile: options.overrideOutFile,
-			pathToPackageJson: options.pathToPackageJson
+			overrideOutBase: options?.overrideOutBase,
+			overrideOutDir: options?.overrideOutDir,
+			overrideOutFile: options?.overrideOutFile,
+			pathToPackageJson: options?.pathToPackageJson
 		}
 
 		const handlerRef = handler(resolvePathOptions);

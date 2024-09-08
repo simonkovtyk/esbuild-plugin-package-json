@@ -63,7 +63,7 @@ Each overwrite will overwrite the specific esbuild configuration.
 
 ### Lifecycle
 
-You can configure at which lifecycle of esbuild, where the plugin will be called.
+You can configure at which lifecycle of esbuild the plugin will be called.
 
 ````typescript
 packageJsonPlugin(
