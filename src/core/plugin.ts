@@ -18,8 +18,6 @@ const handler = (options: ResolvePathOptions) => {
 
 		const resolvedOutDir = resolveOutDir(options);
 
-		console.log(resolvedOutDir);
-
 		if (!fs.existsSync(resolvedOutDir)) {
 			fs.mkdirSync(resolvedOutDir, { recursive: true });
 		}
