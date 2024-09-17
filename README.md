@@ -6,7 +6,9 @@
 
 <p>Prepares the package.json by removing all unnecessary fields and<br/>copying it to the output folder of esbuild.</p>
 
-![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json) ![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
+![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json)
+![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/simonkovtyk/esbuild-plugin-package-json)
 
 <br />
 
@@ -25,17 +27,15 @@ npm install esbuild-plugin-package-json
 <details>
 <summary>📦 other package manager</summary>
 
-**yarn**
+> 💾 **yarn**
+> ````shell
+> yarn install esbuild-plugin-package-json
+> ````
 
-````shell
-yarn install esbuild-plugin-package-json
-````
-
-**pnpm**
-
-````shell
-pnpm install esbuild-plugin-package-json
-````
+> 💾 **pnpm**
+> ````shell
+> pnpm install esbuild-plugin-package-json
+> ````
 
 </details>
 
@@ -43,13 +43,22 @@ Looks good so far 🔥 — now you have installed the latest version!
 
 ## 💡 Introduction
 
-While a package should be published, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
+While a package is a relase candidat, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
 
-Following fields will be removed:
-- devDependencies
-- scripts
+The following fields can be safely removed:
+````json
+{
+  "scripts": {
+    // something here...
+  },
+  "devDependencies": {
+    // something here...
+  }
+}
+````
 
 ## ⚓ Usage
+
 ```typescript
 packageJsonPlugin(options);
 ```
