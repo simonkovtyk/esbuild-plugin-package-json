@@ -1,15 +1,43 @@
-# esbuild plugin for package.json
+<img align="center" src="" />
+<h1 align="center">package.json Plugin</h1>
+<p align="center">Prepares the package.json by removing all unnecessary fields and<br/>copying it to the output folder of esbuild.</p>
+
+<div align="center">
 
 ![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json) ![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
 
-Prepares the package.json by removing all unnecessary fields and copying it to the out-folder of esbuild, so the built package can be published directly.
+<br />
 
-* Supports newest esbuild version
-* Uses NPM's package.json discovery
-* Uses esbuild config to determine the out folder
-* Type declarations (d.ts) included
+Add a ⭐ to this repository — *it motivates me a lot!*
 
-## Unnecessary fields
+</div>
+
+## ⚡️ Getting started
+
+Simply install this package with your package manager.
+
+````shell
+npm install esbuild-plugin-package-json
+````
+
+<details>
+<summary>📦 other package manager</summary>
+
+**yarn**
+
+````shell
+yarn install esbuild-plugin-package-json
+````
+
+**pnpm**
+
+````shell
+pnpm install esbuild-plugin-package-json
+````
+
+</details>
+
+## 💡 Introduction
 
 While a package should be published, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
 
@@ -17,14 +45,7 @@ Following fields will be removed:
 - devDependencies
 - scripts
 
-## How it works
-
-1. Parses the package.json from the project root.
-2. Deletes all unnecessary fields.
-3. Determines the out-folder by using the existing esbuild configuration.
-4. Writes the new package.json to this dir.
-
-## Usage
+## ⚓ Usage
 ```typescript
 packageJsonPlugin(options);
 ```
@@ -115,28 +136,6 @@ packageJsonPlugin({
 Type: ``Plugin``
 
 An instance of this plugin, that will be used by esbuild automatically.
-
-## Installation
-
-The plugin can be installed by any package manager.
-
-### npm
-
-````shell
-npm install esbuild-plugin-package-json
-````
-
-### yarn
-
-````shell
-yarn install esbuild-plugin-package-json
-````
-
-### pnpm
-
-````shell
-pnpm install esbuild-plugin-package-json
-````
 
 ## License
 
