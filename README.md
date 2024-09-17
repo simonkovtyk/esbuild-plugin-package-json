@@ -1,8 +1,10 @@
-<img align="center" src="" />
-<h1 align="center">package.json Plugin</h1>
-<p align="center">Prepares the package.json by removing all unnecessary fields and<br/>copying it to the output folder of esbuild.</p>
-
 <div align="center">
+
+<img width="196" src="https://raw.githubusercontent.com/simonkovtyk/esbuild-plugin-package-json/d7d77d5766ef9ef97f157c2d221d61a7d3cef51c/docs/esbuild-favicon.svg" />
+
+<h1>package.json Plugin</h1>
+
+<p>Prepares the package.json by removing all unnecessary fields and<br/>copying it to the output folder of esbuild.</p>
 
 ![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json) ![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
 
@@ -36,6 +38,8 @@ pnpm install esbuild-plugin-package-json
 ````
 
 </details>
+
+Looks good so far 🔥 — now you have installed the latest version!
 
 ## 💡 Introduction
 
