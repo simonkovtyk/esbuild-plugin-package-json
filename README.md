@@ -17,100 +17,126 @@ Following fields will be removed:
 - devDependencies
 - scripts
 
-## How It Works
+## How it works
 
 1. Parses the package.json from the project root.
 2. Deletes all unnecessary fields.
 3. Determines the out-folder by using the existing esbuild configuration.
 4. Writes the new package.json to this dir.
 
-This plugin prefers an ``outdir`` over an ``outfile``, but if only an ``outfile`` is provided, the plugin will choose the directory of the ``outfile`` as output directory for the package.json instead.\
-The ``outbase`` is used as a prefix for the ``outdir`` or ``outfile`` and it can be left as empty, if it is not needed.
-
-## Options
-
-### Parsing the package.json file
-
-The default behavior is, that this package will use NPM's package.json resolution.\
-Otherwise it may be helpful, to overwrite the path to the package.json manually:
-
+## Usage
 ```typescript
-packageJsonPlugin(
-  [...]
-  pathToPackageJson?: string | undefined
-);
+packageJsonPlugin(options);
 ```
 
-The path to the custom package.json can be customized by using the ``pathToPackageJson`` key.
+This function needs to be called inside the esbuild configuration in order to use this plugin. It will provide the plugin inside the build process of esbuild.
 
-### Output directory
-
-This plugin will use the esbuild configuration to determine the output directory for the package.json.\
-Sometimes it can be helpful to overwrite the output directory.
+<details>
+<summary>Show an example of the integration</summary>
 
 ````typescript
-packageJsonPlugin(
-  [...]
-  overrideOutBase?: string | undefined,
-  overrideOutDir?: string | undefined,
-  overrideOutFile?: string | undefined
-);
-````
-
-Each overwrite will overwrite the specific esbuild configuration.
-
-[See here for more details about the out configuration of esbuild.](https://esbuild.github.io/api/#outbase)
-
-### Lifecycle
-
-You can configure at which lifecycle of esbuild the plugin will be called.
-
-````typescript
-packageJsonPlugin(
-  [...]
-  lifecycle: "onStart" | "onEnd" | "onDispose" | undefined
-);
-````
-
-[See here for more about the esbuild lifecycles.](https://esbuild.github.io/plugins/#concepts)
-
-## Usage
-
-### Installation
-
-The plugin can be installed by any package manager.
-
-<details><summary><b>Show instructions</b></summary>
-
-> npm \
-> ``npm install esbuild-plugin-package-json``
-
-> yarn \
-> ``yarn install esbuild-plugin-package-json``
-
-> pnpm \
-> ``pnpm install esbuild-plugin-package-json``
-
-</details>
-
-### Integration
-
-The easy way to integrate this plugin in esbuild.
-
-<details><summary><b>Show instructions</b></summary>
-
-````typescript
-await esbuild.build({
-  [...]
+esbuild.build({
+  // some configuration...
   plugins: [
-    packageJsonPlugin(...)
+    packageJsonPlugin();
+    // more plugins here...
   ]
 })
 ````
 
-[See here for more about the esbuild plugin integration.](https://esbuild.github.io/plugins/#using-plugins)
+</details>
+
+<details>
+<summary>Show an example of the configuration</summary>
+
+````typescript
+packageJsonPlugin({
+  // configure here
+});
+````
+</details>
+
+### Properties
+
+#### ``lifecycle``
+
+> Default: ``onEnd``
+
+An string with either the value ``onStart`` or ``onEnd``.
+
+<details>
+<summary>Show an example</summary>
+
+````typescript
+packageJsonPlugin({
+  lifecycle: "onStart"
+});
+````
+</details>
+
+[See here](https://esbuild.github.io/plugins/#concepts) for more about esbuild lifecycles.
+
+#### ``overrideOut``
+
+> Default: ``undefined`` (esbuild's output directory)
+
+A ``string``, that specifies the output directory for the package.json.
+
+<details>
+<summary>Show an example</summary>
+
+````typescript
+packageJsonPlugin({
+  overrideOut: "dist" // any directory allowed
+});
+````
 
 </details>
+
+#### ``overridePackageJson``
+
+> Default: ``undefined`` (npm default)
+
+You can override the start directory for the package.json search, if a ``string`` is provided here.
+
+<details>
+<summary>Show an example</summary>
+
+````typescript
+packageJsonPlugin({
+  overridePackageJson: "libs/my-lib" // any directory allowed
+});
+````
+
+</details>
+
+### Returns
+
+Type: ``Plugin``
+
+An instance of this plugin, that will be used by esbuild automatically.
+
+## Installation
+
+The plugin can be installed by any package manager.
+
+### npm
+
+````shell
+npm install esbuild-plugin-package-json
+````
+
+### yarn
+
+````shell
+yarn install esbuild-plugin-package-json
+````
+
+### pnpm
+
+````shell
+pnpm install esbuild-plugin-package-json
+````
 
 ## License
 
@@ -121,7 +147,7 @@ The MIT License (MIT) - Please have a look at the LICENSE file for more details.
 Feel free to contribute to this project.\
 You can fork this project and create a new pull request for contributing.
 
-[Get to the repository at GitHub.](https://github.com/simonkovtyk/esbuild-plugin-package-json)
+[See here for GitHub.](https://github.com/simonkovtyk/esbuild-plugin-package-json)
 
 <hr>
 

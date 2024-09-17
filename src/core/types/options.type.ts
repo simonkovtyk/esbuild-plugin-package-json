@@ -1,24 +1,23 @@
-type Lifecycle = "onStart" | "onEnd" | "onDispose";
+type Lifecycle = "onStart" | "onEnd";
 
 type PathOverrides = {
-	overrideOutBase?: string | undefined,
-	overrideOutDir?: string | undefined,
-	overrideOutFile?: string | undefined,
-	pathToPackageJson?: string | undefined
+	overrideOut?: string | undefined,
+	overridePackageJson?: string | undefined
 }
 
 type Options = {
 	lifecycle?: Lifecycle | undefined
 } & PathOverrides
 
-type ResolvePathOptions = {
-	outBase?: string | undefined,
+type EsbuildOptionPaths = {
 	outDir?: string | undefined,
-	outFile?: string | undefined
-} & PathOverrides;
+	outFile?: string | undefined,
+	outBase?: string | undefined
+};
 
 export type {
-	ResolvePathOptions,
+	PathOverrides,
+	EsbuildOptionPaths,
 	Lifecycle,
 	Options
 }
