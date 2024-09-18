@@ -1,19 +1,19 @@
 type Lifecycle = "onStart" | "onEnd";
 
-type PathOverrides = {
+interface PathOverrides {
 	overrideOut?: string | undefined,
 	overridePackageJson?: string | undefined
 }
 
-type Options = {
+interface Options extends PathOverrides {
 	lifecycle?: Lifecycle | undefined
-} & PathOverrides
+}
 
-type EsbuildOptionPaths = {
+interface EsbuildOptionPaths {
 	outDir?: string | undefined,
 	outFile?: string | undefined,
 	outBase?: string | undefined
-};
+}
 
 export type {
 	PathOverrides,

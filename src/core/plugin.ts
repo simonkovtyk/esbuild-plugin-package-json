@@ -15,6 +15,7 @@ const handler = (lifecycle: Lifecycle, options: EsbuildOptionPaths & PathOverrid
 		const packageJsonContent = packageJson.content;
 
 		shouldRemoveFields.forEach((shouldRemoveField: string): void => {
+			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
 			delete packageJsonContent[shouldRemoveField];
 		});
 
@@ -24,7 +25,7 @@ const handler = (lifecycle: Lifecycle, options: EsbuildOptionPaths & PathOverrid
 			fs.mkdirSync(resolvedOutDir, { recursive: true });
 		}
 
-		const resolvedOutFile: string = `${ resolvedOutDir }/${ PACKAGE_JSON_FILENAME }`;
+		const resolvedOutFile = `${ resolvedOutDir }/${ PACKAGE_JSON_FILENAME }`;
 
 		try {
 			fs.writeFileSync(

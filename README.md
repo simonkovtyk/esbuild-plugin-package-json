@@ -162,7 +162,7 @@ The MIT License (MIT) - Please have a look at the LICENSE file for more details.
 Feel free to contribute to this project.\
 You can fork this project and create a new pull request for contributing.
 
-[See here for the repository at GitHub](https://github.com/simonkovtyk/esbuild-plugin-package-json)
+[See here](https://github.com/simonkovtyk/esbuild-plugin-package-json) for the repository at GitHub.
 
 <hr>
 
