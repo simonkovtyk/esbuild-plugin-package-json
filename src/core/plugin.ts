@@ -9,69 +9,70 @@ import { EsbuildOptionPaths, Lifecycle, Options, PathOverrides } from "./types/o
 import PackageJson from "@npmcli/package-json";
 
 const handler = (lifecycle: Lifecycle, options: EsbuildOptionPaths & PathOverrides): () => Promise<(typeof lifecycle extends "onStart" ? OnStartResult : OnEndResult) | null> => {
-	return async () => {
-		const packageJson: NPMCliPackageJson = await PackageJson.load(options.overridePackageJson ?? process.cwd());
+  return async () => {
+    const packageJson: NPMCliPackageJson = await PackageJson.load(options.overridePackageJson ?? process.cwd());
 
-		const packageJsonContent = packageJson.content;
+    const packageJsonContent = packageJson.content;
 
-		shouldRemoveFields.forEach((shouldRemoveField: string): void => {
-			// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-			delete packageJsonContent[shouldRemoveField];
-		});
+    shouldRemoveFields.forEach((shouldRemoveField: string): void => {
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete packageJsonContent[shouldRemoveField];
+    });
 
-		const resolvedOutDir: string = resolveOutDir(options);
+    const resolvedOutDir: string = resolveOutDir(options);
 
-		if (!fs.existsSync(resolvedOutDir)) {
-			fs.mkdirSync(resolvedOutDir, { recursive: true });
-		}
+    if (!fs.existsSync(resolvedOutDir)) {
+      fs.mkdirSync(resolvedOutDir, { recursive: true });
+    }
 
-		const resolvedOutFile = `${ resolvedOutDir }/${ PACKAGE_JSON_FILENAME }`;
+    const resolvedOutFile = `${resolvedOutDir}/${PACKAGE_JSON_FILENAME}`;
 
-		try {
-			fs.writeFileSync(
-				resolvedOutFile,
-				JSON.stringify(packageJsonContent, null, 2)
-			);
-		} catch {
-			return {
-				errors: [
-					{
-						text: Messages.PACKAGE_JSON_WRITE
-					}
-				]
-			}
-		}
+    try {
+      fs.writeFileSync(
+        resolvedOutFile,
+        JSON.stringify(packageJsonContent, null, 2)
+      );
+    }
+    catch {
+      return {
+        errors: [
+          {
+            text: Messages.PACKAGE_JSON_WRITE
+          }
+        ]
+      };
+    }
 
-		return null;
-	}
-}
+    return null;
+  };
+};
 
 const packageJsonPlugin = (options?: Options | undefined): Plugin => ({
-	name: "esbuild-plugin-package-json",
-	setup: (build: PluginBuild) => {
-		const lifecycle: Lifecycle = options?.lifecycle ?? "onEnd";
+  name: "esbuild-plugin-package-json",
+  setup: (build: PluginBuild) => {
+    const lifecycle: Lifecycle = options?.lifecycle ?? "onEnd";
 
-		const resolvePathOptions: EsbuildOptionPaths & PathOverrides = {
-			overrideOut: options?.overrideOut,
-			overridePackageJson: options?.overridePackageJson,
-			outBase: build.initialOptions.outbase,
-			outDir: build.initialOptions.outdir,
-			outFile: build.initialOptions.outfile
-		}
+    const resolvePathOptions: EsbuildOptionPaths & PathOverrides = {
+      overrideOut: options?.overrideOut,
+      overridePackageJson: options?.overridePackageJson,
+      outBase: build.initialOptions.outbase,
+      outDir: build.initialOptions.outdir,
+      outFile: build.initialOptions.outfile
+    };
 
-		const handlerRef = handler(lifecycle, resolvePathOptions);
+    const handlerRef = handler(lifecycle, resolvePathOptions);
 
-		switch (lifecycle) {
-			case "onStart":
-				build.onStart(handlerRef);
-				break;
-			case "onEnd":
-				build.onEnd(handlerRef);
-				break;
-		}
-	}
-})
+    switch (lifecycle) {
+      case "onStart":
+        build.onStart(handlerRef);
+        break;
+      case "onEnd":
+        build.onEnd(handlerRef);
+        break;
+    }
+  }
+});
 
 export {
-	packageJsonPlugin
-}
+  packageJsonPlugin
+};
