@@ -159,10 +159,12 @@ The MIT License (MIT) - Please have a look at the LICENSE file for more details.
 
 ## Contributing
 
-Feel free to contribute to this project.\
-You can fork this project and create a new pull request for contributing.
+Want to contribute to an open-source project on GitHub but unsure where to start? Check out this comprehensive step-by-step guide on how to contribute effectively!
 
-[See here](https://github.com/simonkovtyk/esbuild-plugin-package-json) for the repository at GitHub.
+From forking the repository to creating pull requests, this guide walks you through every stage of the process, helping you make a successful contribution to this GitHub project. Start collaborating, learn new skills, and make an
+impact on this project!
+
+[See here](https://github.com/simonkovtyk/esbuild-plugin-package-json/blob/main/docs/guides/HOW_TO_CONTRIBUTE.md) for the contribute guide at GitHub.
 
 <hr>
 
