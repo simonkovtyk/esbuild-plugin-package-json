@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  pull_request:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
