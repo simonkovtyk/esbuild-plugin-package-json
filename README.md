@@ -155,7 +155,7 @@ An instance of this plugin, that will be used by esbuild automatically.
 
 ## License
 
-The MIT License (MIT) - Please have a look at the LICENSE file for more details.
+The MIT License (MIT) - Please have a look at the [License](https://github.com/simonkovtyk/esbuild-plugin-package-json/blob/main/LICENSE) file for more details.
 
 ## Contributing
 
