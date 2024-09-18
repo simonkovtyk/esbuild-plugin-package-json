@@ -8,7 +8,8 @@
 
 ![NPM Downloads](https://img.shields.io/npm/dw/esbuild-plugin-package-json)
 ![NPM License](https://img.shields.io/npm/l/esbuild-plugin-package-json)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/simonkovtyk/esbuild-plugin-package-json)
+![GitHub package.json version](https://img.shields.io/npm/v/esbuild-plugin-package-json)
+![TypeScript types](https://img.shields.io/badge/TypeScript_types-included-blue)
 
 <br />
 
