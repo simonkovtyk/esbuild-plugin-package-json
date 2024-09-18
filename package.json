@@ -33,10 +33,8 @@
 		"url": "git+https://github.com/simonkovtyk/esbuild-plugin-package-json.git"
 	},
 	"exports": {
-		".": {
-			"default": "./public-api.js",
-			"types": "./public-api.d.ts"
-		}
+		"default": "./public-api.js",
+		"types": "./public-api.d.ts"
 	},
 	"author": {
 		"name": "Simon Kovtyk",
@@ -62,7 +60,7 @@
 		"eslint": "^9.10.0",
 		"typescript": "^5.5.4",
 		"typescript-eslint": "^8.6.0",
-		"@stylistic/eslint-plugin-ts": "^2.8.0",
+		"@stylistic/eslint-plugin": "^2.8.0",
 		"husky": "^9.1.6"
 	},
 	"scripts": {
