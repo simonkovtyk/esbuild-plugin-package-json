@@ -1,4 +1,4 @@
-name: Deploy
+name: Pull request checks
 on:
   pull_request:
     types:
@@ -24,4 +24,4 @@ jobs:
         run: tsc --noEmit
 
       - name: Lint
-        run: eslint .
+        run: pnpx eslint .
