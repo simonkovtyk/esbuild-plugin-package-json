@@ -27,6 +27,8 @@ npm install esbuild-plugin-package-json
 <details>
 <summary>📦 other package manager</summary>
 
+Here are examples for installing the package with other package manager.
+
 > 💾 **yarn**
 > ````shell
 > yarn install esbuild-plugin-package-json
@@ -57,7 +59,7 @@ The following fields can be safely removed:
 }
 ````
 
-## ⚓ Usage
+## 🔧 Usage
 
 ```typescript
 packageJsonPlugin(options);
