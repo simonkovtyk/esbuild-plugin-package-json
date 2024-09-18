@@ -22,7 +22,7 @@ Add a ⭐ to this repository — *it motivates me a lot!*
 Simply install this package with your package manager.
 
 ````shell
-npm install esbuild-plugin-package-json
+npm install -D esbuild-plugin-package-json
 ````
 
 <details>
@@ -32,12 +32,12 @@ Here are examples for installing the package with other package manager.
 
 > 💾 **yarn**
 > ````shell
-> yarn install esbuild-plugin-package-json
+> yarn add -D esbuild-plugin-package-json
 > ````
 
 > 💾 **pnpm**
 > ````shell
-> pnpm install esbuild-plugin-package-json
+> pnpm install -D esbuild-plugin-package-json
 > ````
 
 </details>
