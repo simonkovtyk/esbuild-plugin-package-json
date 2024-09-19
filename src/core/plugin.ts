@@ -1,69 +1,78 @@
-import { Plugin, PluginBuild } from "esbuild";
+import NPMCliPackageJson from "@npmcli/package-json";
+import { OnEndResult, OnStartResult, Plugin, PluginBuild } from "esbuild";
 import fs from "node:fs";
 import { shouldRemoveFields } from "./constants/fields.constant";
 import { PACKAGE_JSON_FILENAME } from "./constants/file.constant";
+import { Messages } from "./enums/message.enum";
 import { resolveOutDir } from "./helpers/out.helper";
-import { Lifecycle, Options, ResolvePathOptions } from "./types/options.type";
+import { EsbuildOptionPaths, Lifecycle, Options, PathOverrides } from "./types/options.type";
 import PackageJson from "@npmcli/package-json";
 
-const handler = (options: ResolvePathOptions) => {
-	return async () => {
-		const packageJson = await PackageJson.load(options.pathToPackageJson ?? process.cwd());
+const handler = (lifecycle: Lifecycle, options: EsbuildOptionPaths & PathOverrides): () => Promise<(typeof lifecycle extends "onStart" ? OnStartResult : OnEndResult) | null> => {
+  return async () => {
+    const packageJson: NPMCliPackageJson = await PackageJson.load(options.overridePackageJson ?? process.cwd());
 
-		const packageJsonContent = packageJson.content;
+    const packageJsonContent = packageJson.content;
 
-		shouldRemoveFields.forEach((shouldRemoveField: string): void => {
-			delete packageJsonContent[shouldRemoveField];
-		});
+    shouldRemoveFields.forEach((shouldRemoveField: string): void => {
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete packageJsonContent[shouldRemoveField];
+    });
 
-		const resolvedOutDir = resolveOutDir(options);
+    const resolvedOutDir: string = resolveOutDir(options);
 
-		console.log(resolvedOutDir);
+    if (!fs.existsSync(resolvedOutDir)) {
+      fs.mkdirSync(resolvedOutDir, { recursive: true });
+    }
 
-		if (!fs.existsSync(resolvedOutDir)) {
-			fs.mkdirSync(resolvedOutDir, { recursive: true });
-		}
+    const resolvedOutFile = `${resolvedOutDir}/${PACKAGE_JSON_FILENAME}`;
 
-		const resolvedOutFile = `${ resolvedOutDir }/${ PACKAGE_JSON_FILENAME }`;
+    try {
+      fs.writeFileSync(
+        resolvedOutFile,
+        JSON.stringify(packageJsonContent, null, 2)
+      );
+    }
+    catch {
+      return {
+        errors: [
+          {
+            text: Messages.PACKAGE_JSON_WRITE
+          }
+        ]
+      };
+    }
 
-		fs.writeFileSync(
-			resolvedOutFile,
-			JSON.stringify(packageJsonContent, null, 2)
-		);
-	}
-}
+    return null;
+  };
+};
 
-const packageJsonPlugin = (options: Options): Plugin => ({
-	name: "esbuild-plugin-package-json",
-	setup: (build: PluginBuild) => {
-		const lifecycle: Lifecycle = options?.lifecycle ?? "onEnd";
+const packageJsonPlugin = (options?: Options | undefined): Plugin => ({
+  name: "esbuild-plugin-package-json",
+  setup: (build: PluginBuild) => {
+    const lifecycle: Lifecycle = options?.lifecycle ?? "onEnd";
 
-		const resolvePathOptions: ResolvePathOptions = {
-			outBase: build.initialOptions.outbase,
-			outDir: build.initialOptions.outdir,
-			outFile: build.initialOptions.outfile,
-			overrideOutBase: options?.overrideOutBase,
-			overrideOutDir: options?.overrideOutDir,
-			overrideOutFile: options?.overrideOutFile,
-			pathToPackageJson: options?.pathToPackageJson
-		}
+    const resolvePathOptions: EsbuildOptionPaths & PathOverrides = {
+      overrideOut: options?.overrideOut,
+      overridePackageJson: options?.overridePackageJson,
+      outBase: build.initialOptions.outbase,
+      outDir: build.initialOptions.outdir,
+      outFile: build.initialOptions.outfile
+    };
 
-		const handlerRef = handler(resolvePathOptions);
+    const handlerRef = handler(lifecycle, resolvePathOptions);
 
-		switch (lifecycle) {
-			case "onStart":
-				build.onStart(handlerRef);
-				break;
-			case "onEnd":
-				build.onEnd(handlerRef);
-				break;
-			case "onDispose":
-				build.onDispose(handlerRef);
-				break;
-		}
-	}
-})
+    switch (lifecycle) {
+      case "onStart":
+        build.onStart(handlerRef);
+        break;
+      case "onEnd":
+        build.onEnd(handlerRef);
+        break;
+    }
+  }
+});
 
 export {
-	packageJsonPlugin
-}
+  packageJsonPlugin
+};
