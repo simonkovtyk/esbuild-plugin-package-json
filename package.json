@@ -64,6 +64,6 @@
 		"husky": "^9.1.6"
 	},
 	"scripts": {
-		"prepare": "husky"
+		"lint:husky": "husky"
 	}
 }

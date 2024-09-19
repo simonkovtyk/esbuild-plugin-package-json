@@ -20,7 +20,7 @@ jobs:
       - name: Lint
         run: |
           tsc --noEmit
-          pnpm run prepare
+          pnpm run lint:husky
 
       - name: Build
         run: tsc
