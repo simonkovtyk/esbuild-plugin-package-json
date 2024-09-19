@@ -17,6 +17,11 @@ jobs:
           version: latest
           run_install: true
 
+      - name: Lint
+        run: |
+          tsc --noEmit
+          pnpm run prepare
+
       - name: Build
         run: tsc
 
