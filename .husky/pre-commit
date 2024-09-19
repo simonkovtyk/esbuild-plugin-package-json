@@ -1,2 +1,2 @@
-eslint .
+pnpx eslint .
 tsc --noEmit
