@@ -1,12 +1,3 @@
----
-name: Feature or bug fix
-about: Add a feature or a bug fix
-title: [PULL]: add your description here...
-labels: feature
-assignees: simonkovtyk
-
----
-
 **Relates your request to an existing bug?**
 *Please delete what does not apply.*
 My new feature **[does/doesn't]** relate to an existing bug.
