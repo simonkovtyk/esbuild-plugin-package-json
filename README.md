@@ -99,6 +99,7 @@ packageJsonPlugin({
 
 > Default: ``onEnd``
 
+
 An string with either the value ``onStart`` or ``onEnd``.
 
 <details>
