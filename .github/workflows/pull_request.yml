@@ -35,7 +35,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.issues.createComment({
+            github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
@@ -48,7 +48,7 @@ jobs:
                 The author will review the changes shortly, and we look forward to merging your contributions into the project. Thank you for your hard work and dedication! 🎉`
             });
             
-            github.issues.addLabels({
+            github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
@@ -63,7 +63,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            github.issues.createComment({
+            github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
@@ -76,7 +76,7 @@ jobs:
                 Feel free to reach out if you have any questions or need assistance. We appreciate your effort in improving our codebase! 🙏`
             });
 
-            github.issues.addLabels({
+            github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
