@@ -2,18 +2,21 @@
 name: Feature request
 about: Suggest an idea for this project
 title: [FEAT]: add your description here...
-labels: feature proposal
+labels: feature addition
 assignees: simonkovtyk
 
 ---
 
 **Relates your request to an existing bug?**
 *Please delete what does not apply.*
-My request **[does/doesn't]** relate to an existing bug.
+My new feature **[does/doesn't]** relate to an existing bug.
 The existing bug can be found here: **[issue-link]**.
 
-**Describe your request**
-A clear and concise description of what you want to request.
+**Describe the new feature**
+A clear and concise description of what you've changed.
+
+**Explain your changes**
+Give a description of what you've changed.
 
 **Additional context**
-Add any other context or output about the feature request here.
+Add any other context or output about the new feature here.
