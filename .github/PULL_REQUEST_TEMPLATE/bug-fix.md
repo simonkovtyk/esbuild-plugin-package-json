@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug fix
+about: Provide a bug fix
 title: [BUG]: add your description here...
-labels: bug proposal
+labels: bug fix
 assignees: simonkovtyk
 
 ---
@@ -15,13 +15,8 @@ The relating bug can be found here: **[issue-link]**.
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-*If the bug cannot be reproduced, we cannot fix the bug!*
-Steps to reproduce the behavior:
-A clear and concise description about how to trigger the bug again.
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Explain your changes**
+Give a description of what you've changed to make it work.
 
 **Additional context**
 Add any other context about the problem here.
