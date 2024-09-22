@@ -1,0 +1,84 @@
+name: Pull request checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - main
+
+jobs:
+  style_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: true
+
+      - name: Lint
+        run: |
+          tsc --noEmit
+          pnpx eslint .
+  notify_success:
+    runs-on: ubuntu-latest
+    needs: style_check
+    if: success()
+    steps:
+      - name: Comment success
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `### ✅ Successful Review
+  
+                Great news! Your pull request has been successfully reviewed, and no errors were found.
+  
+                ### ⏳ Next Steps
+  
+                The author will review the changes shortly, and we look forward to merging your contributions into the project. Thank you for your hard work and dedication! 🎉`
+            });
+            
+            github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ["ci-success"]
+            });
+  notify_failure:
+    runs-on: ubuntu-latest
+    needs: style_check
+    if: failure()
+    steps:
+      - name: Comment failure
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `### ⚠️ Review Required
+  
+                Thank you for your contribution! Upon review, we've identified some issues in the pull request that need to be addressed. Please take a moment to review the errors and make the necessary adjustments before we can proceed with the integration.
+  
+                ### 🛠️ Next Steps
+  
+                Feel free to reach out if you have any questions or need assistance. We appreciate your effort in improving our codebase! 🙏`
+            });
+
+            github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ["ci-failure"]
+            });
