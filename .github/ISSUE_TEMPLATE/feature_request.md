@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: [FEAT]: add your description here...
+title: '[FEAT]: add your description here...'
 labels: feature proposal
 assignees: simonkovtyk
 
