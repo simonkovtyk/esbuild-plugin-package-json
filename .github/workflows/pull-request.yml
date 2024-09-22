@@ -20,8 +20,7 @@ jobs:
           version: latest
           run_install: true
 
-      - name: TypeScript Compiler
-        run: tsc --noEmit
-
       - name: Lint
-        run: pnpx eslint .
+        run: |
+          tsc --noEmit
+          pnpx eslint .
