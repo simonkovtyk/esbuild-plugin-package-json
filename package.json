@@ -52,8 +52,19 @@
 		"@npmcli/package-json": "^5.2.0",
 		"esbuild": ">=0.20.0"
 	},
+	"scripts": {
+		"lint:commit": "commitlint --edit",
+		"lint:eslint": "eslint .",
+		"lint:tsc": "tsc --noEmit",
+		"build": "tsc"
+	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
+		"@commitlint/cz-commitlint": "^19.5.0",
+		"inquirer": "9.3.6",
+		"commitizen": "^4.3.0",
 		"@types/eslint__js": "^8.42.3",
 		"@types/node": "^22.5.4",
 		"@types/npmcli__package-json": "^4.0.4",
