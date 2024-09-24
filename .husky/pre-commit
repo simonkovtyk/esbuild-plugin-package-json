@@ -1,2 +1,2 @@
-pnpx eslint .
-tsc --noEmit
+npm run lint:tsc
+npm run lint:eslint
