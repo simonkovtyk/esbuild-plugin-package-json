@@ -19,11 +19,10 @@ jobs:
 
       - name: Lint code
         run: |
-          tsc --noEmit
-          pnpx eslint .
+          pnpm run lint:eslint
 
       - name: Build
-        run: tsc
+        run: pnpm run build
 
       - name: Assets
         run: |

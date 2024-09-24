@@ -22,10 +22,16 @@ jobs:
           version: latest
           run_install: true
 
-      - name: Lint
+      - name: Lint code
         run: |
-          tsc --noEmit
-          pnpx eslint .
+          pnpm run lint:tsc
+          pnpm run lint:eslint
+
+      - name: Lint commits
+        if: github.event_name == 'pull_request'
+        run: |
+          commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
   notify_success:
     runs-on: ubuntu-latest
     needs: style_check
