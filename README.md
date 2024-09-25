@@ -46,7 +46,7 @@ Looks good so far 🔥 — now you have installed the latest version!
 
 ## 💡 Introduction
 
-While a package is a relase candidat, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
+While a package is a relase candidate, there are a few fields, that may are considered as a security vulnerability or are just not needed in the published package.
 
 The following fields can be safely removed:
 ````json5
