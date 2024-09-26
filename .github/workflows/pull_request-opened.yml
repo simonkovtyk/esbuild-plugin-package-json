@@ -39,7 +39,7 @@ jobs:
 
             ### 📖 Contribution Guidelines
 
-            For more details on how to contribute effectively, please refer to our [How to Contribute](https://github.com/simonkovtyk/esbuild-plugin-cleanup/blob/main/docs/guides/HOW_TO_CONTRIBUTE.md) document.`
+            For more details on how to contribute effectively, please refer to our [How to Contribute](https://github.com/simonkovtyk/esbuild-plugin-package-json/blob/main/docs/guides/HOW_TO_CONTRIBUTE.md) document.`
             
             github.rest.issues.createComment({
               owner: context.repo.owner,
