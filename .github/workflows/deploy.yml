@@ -1,5 +1,6 @@
 name: Deploy
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -17,18 +18,13 @@ jobs:
           version: latest
           run_install: true
 
-      - name: Lint code
-        run: |
-          pnpm run lint:eslint
-
       - name: Build
-        run: pnpm run build
+        run: pnpm run tsc
 
       - name: Assets
         run: |
           cp package.json dist/package.json
           cp README.md dist/README.md
-          cp LICENSE dist/LICENSE
 
       - name: Config
         env:

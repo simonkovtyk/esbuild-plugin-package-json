@@ -25,7 +25,7 @@
 		"package config plugin"
 	],
 	"license": "MIT",
-	"version": "2.0.0-next.0",
+	"version": "2.0.0-next.1",
 	"bugs": "https://github.com/simonkovtyk/esbuild-plugin-package-json/issues",
 	"homepage": "https://github.com/simonkovtyk/esbuild-plugin-package-json",
 	"repository": {
@@ -53,10 +53,9 @@
 		"esbuild": ">=0.20.0"
 	},
 	"scripts": {
-		"lint:commit": "commitlint --edit",
-		"lint:eslint": "eslint .",
-		"lint:tsc": "tsc --noEmit",
-		"build": "tsc"
+		"commitlint": "commitlint",
+		"eslint": "eslint",
+		"tsc": "tsc"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
