@@ -9,10 +9,17 @@ const resolveOutDir = (options: EsbuildOptionPaths & PathOverrides): string => {
 
   const outBase: string = options.outBase ?? ".";
 
+  if (options.outDir !== undefined)
+    return path.join(
+      process.cwd(),
+      outBase,
+      options.outDir
+    );
+
   return path.join(
     process.cwd(),
     outBase,
-    options.outDir ?? options.outFile === undefined
+    options.outFile === undefined
       ? "dist"
       : path.parse(options.outFile).dir
   );
