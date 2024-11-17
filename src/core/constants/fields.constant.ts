@@ -1,6 +1,7 @@
 const shouldRemoveFields: string[] = [
   "devDependencies",
-  "scripts"
+  "scripts",
+  "publishConfig"
 ];
 
 export {
